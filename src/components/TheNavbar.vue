@@ -13,14 +13,27 @@
         <a href="#">Сообщения</a>
       </li>
       <li>
-        <a href="#">Выход</a>
+        <a href="#" @click.prevent="logout">Выход</a>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
+import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
 export default {
+  setup(){
+    const router = useRouter()
+    const store = useStore()
+
+    return {
+      logout: () => {
+        store.commit('auth/logout')
+        router.push('/auth')
+      }
+    }
+  }
 
 }
 </script>
