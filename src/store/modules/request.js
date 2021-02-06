@@ -41,12 +41,13 @@ export default {
         const {data} = await axios.get(`/requests.json?auth=${token}`)
         const requests = Object.keys(data).map(id => ({...data[id], id}))
         commit('setRequests', requests)
-        // console.log(requests)
+        console.log(requests)
       } catch (e) {
         dispatch('setMessage', {
           value: e.message,
           type: 'danger'
         }, {root: true})
+        throw new Error()
       }
     },
   },
